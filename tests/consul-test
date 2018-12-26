@@ -5,9 +5,7 @@ set -Eeuo pipefail
 
 cd "$(dirname "$0")/.."
 
-set +a
 . ./run/.env
-set -a
 
 ./bin/await
 curl -fsL -o /dev/null "$MAISON_SERVICES_LOCAL_IP:8500"

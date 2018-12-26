@@ -8,8 +8,5 @@ if [ ! -f ./.env ]; then
     ./vendor/krab/bin/krab stdio-alert 'No .env file exists yet. Run ./bin/build or ./bin/build-dev first.'
     exit 2
 fi
-set -a
-. ./.env
-set +a
 
 find ./start -type f -print0 | sort -z | xargs -0 ./vendor/krab/bin/krab run

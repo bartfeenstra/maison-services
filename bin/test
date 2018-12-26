@@ -4,9 +4,4 @@ set -Eeuo pipefail
 
 cd "$(dirname "$0")/.."
 
-# Prepare the test environment.
-set -a
-. .env
-set +a
-
 find ./tests -type f -name '*-test' -print0 | sort -z | xargs -0 ./vendor/krab/bin/krab run -l
