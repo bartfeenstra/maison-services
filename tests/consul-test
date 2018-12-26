@@ -5,7 +5,9 @@ set -Eeuo pipefail
 
 cd "$(dirname "$0")/.."
 
-. ./src/bash/retry
+set +a
+. ./run/.env
+set -a
 
-./vendor/bin/wait-for-it "consul.$MAISON_WEB_DOMAIN:80"
-retry 5 5 "curl --verbose -f --user $MAISON_TEST_HTTP_BASIC_AUTH_USERNAME:$MAISON_TEST_HTTP_BASIC_AUTH_PASSWORD $MAISON_WEB_PROTOCOL://consul.$MAISON_WEB_DOMAIN"
+./vendor/wait-for-it "$MAISON_SERVICES_LOCAL_IP:8500"
+curl -fsL -o /dev/null "$MAISON_SERVICES_LOCAL_IP:8500"
