@@ -9,5 +9,5 @@ set +a
 . ./run/.env
 set -a
 
-./vendor/wait-for-it "$MAISON_SERVICES_LOCAL_IP:8500"
+./bin/await
 curl -fsL -o /dev/null "$MAISON_SERVICES_LOCAL_IP:8500"
