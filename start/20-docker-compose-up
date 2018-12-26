@@ -4,6 +4,9 @@ set -Eeuo pipefail
 
 cd "$(dirname "$0")/.."
 
+# Source the runtime environment variables, so they are available to Docker Compose.
+set -a
 . ./run/.env
+set +a
 
-docker-compose -p maison_services up --scale ci-agent=2 -d
+docker-compose -p maison_services up -d

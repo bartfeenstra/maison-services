@@ -8,7 +8,7 @@ services:
       - '/etc/localtime:/etc/localtime:ro'
       - '/etc/timezone:/etc/timezone:ro'
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - './data/consul:/consul/data'
+      - './data/services/consul:/consul/data'
     network_mode: host
     environment:
       MAISON_SERVICES_LOCAL_IP: '${MAISON_SERVICES_LOCAL_IP}'
