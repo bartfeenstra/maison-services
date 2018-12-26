@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+cd "$(dirname "$0")/.."
+
+. ./run/.env
+
+status=$(curl -fsL -o /dev/null -w "%{http_code}" -H "X-Consul-Token: $MAISON_SERVICES_CONSUL_MASTER_ACL_TOKEN" -X PUT -d "{\"ID\":\"$MAISON_SERVICES_CONSUL_TEMPLATE_ACL_TOKEN\",\"Name\":\"Consul Template\",\"Type\":\"client\",\"Rules\":\"service \\\"\\\" { policy = \\\"read\\\" } node \\\"\\\" { policy = \\\"read\\\"}\"}" "http://$MAISON_SERVICES_LOCAL_IP:8500/v1/acl/create" || true)
+test "$status" -eq 200

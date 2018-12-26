@@ -9,7 +9,7 @@ ensure_env_mode() {
 }
 
 if [ ! -f ./.env ]; then
-    awk -f ./src/awk/generate-env-passwords.awk .env.dist > .env
+    awk -f ./src/awk/prepopulate-env.awk .env.dist > .env
     ensure_env_mode
     ./vendor/krab/bin/krab stdio-inform "A new configuration file with random passwords has been saved to $(readlink -f ./.env)."
 fi

@@ -5,8 +5,8 @@ set -Eeuo pipefail
 
 cd "$(dirname "$0")/.."
 
-mkdir -p ./vendor/bin
-if [ ! -f ./vendor/bin/wait-for-it ]; then
-    curl https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh > ./vendor/bin/wait-for-it
+mkdir -p ./vendor
+if [ ! -f ./vendor/wait-for-it ]; then
+    curl https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh > ./vendor/wait-for-it
 fi
-chmod ugo+rx ./vendor/bin/wait-for-it
+chmod ugo+rx ./vendor/wait-for-it

@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-esh -o /etc/postfix/main.cf /etc/postfix/main.cf.esh
-
-postfix start
