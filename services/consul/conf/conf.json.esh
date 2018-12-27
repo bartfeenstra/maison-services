@@ -8,8 +8,8 @@
   "data_dir": "/consul/data",
   "log_level": "DEBUG",
   "enable_script_checks": true,
-  "advertise_addr": "<%= $MAISON_SERVICES_LOCAL_IP %>",
-  "client_addr": "<%= $MAISON_SERVICES_LOCAL_IP %>",
+  "advertise_addr": "<%= $MAISON_SERVICES_ADVERTISE_IP %>",
+  "client_addr": "<%= $MAISON_SERVICES_ADVERTISE_IP %>",
   "bootstrap": true,
   "ui": true,
   "server": true

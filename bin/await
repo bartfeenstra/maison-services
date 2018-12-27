@@ -6,4 +6,4 @@ cd "$(dirname "$0")/.."
 
 . ./run/.env
 
-./vendor/wait-for-it "$MAISON_SERVICES_LOCAL_IP:8500"
+./vendor/wait-for-it "$MAISON_SERVICES_ADVERTISE_IP:8500"
