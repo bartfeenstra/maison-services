@@ -4,13 +4,10 @@ set -Eeuo pipefail
 
 cd "$(dirname "$0")/.."
 
-ensure_env_mode() {
-    chmod u=rw,go= .env
-}
-
 if [ ! -f ./.env ]; then
-    awk -f ./src/awk/prepopulate-env.awk .env.dist > .env
-    ensure_env_mode
-    ./vendor/krab/bin/krab stdio-inform "A new configuration file with random passwords has been saved to $(readlink -f ./.env)."
+    cp .env.dist  .env
+    sed -Ei "s/^MAISON_SERVICES_CONSUL_MASTER_ACL_TOKEN=$/MAISON_SERVICES_CONSUL_MASTER_ACL_TOKEN=$(uuidgen)/" ./.env
+    sed -Ei "s/^MAISON_SERVICES_CONSUL_SERVICE_ACL_TOKEN=$/MAISON_SERVICES_CONSUL_SERVICE_ACL_TOKEN=$(uuidgen)/" ./.env
+    ./vendor/krab/bin/krab stdio-inform "A new configuration file with random tokens has been saved to $(readlink -f ./.env)."
 fi
-ensure_env_mode
+chmod u=rw,go= .env
