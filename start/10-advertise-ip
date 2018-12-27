@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+cd "$(dirname "$0")/.."
+
+. ./run/.env
+
+# If no explicit advertise IP was given, use the private IP from Docker's bridge network, so we advertise on this host
+# only.
+if [ -z $MAISON_SERVICES_ADVERTISE_IP ]; then
+    maison_local_ip=$(docker network inspect -f '{{range .IPAM.Config}}{{.Gateway}}{{end}}' bridge)
+    sed -Ei "s/^MAISON_SERVICES_ADVERTISE_IP=.*$/MAISON_SERVICES_ADVERTISE_IP=$maison_local_ip/" ./run/.env
+fi
