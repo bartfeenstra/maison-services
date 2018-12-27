@@ -8,4 +8,4 @@ cd "$(dirname "$0")/.."
 . ./run/.env
 
 ./bin/await
-curl -fsL -o /dev/null "$MAISON_SERVICES_ADVERTISE_IP:8500"
+curl -fsSL -D /dev/stderr -o /dev/null "$MAISON_SERVICES_ADVERTISE_IP:8500"
